@@ -121,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void sendToClarifai(final Bitmap bitmap) {
-        /*
         RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -154,34 +153,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         System.out.println(stringRequest.toString());
-        queue.add(stringRequest);*/
-        public void postData(String url,HashMap<> data,final VolleyCallback mResultCallback) {
-            RequestQueue requestQueue = Volley.newRequestQueue(this);
-
-            JsonObjectRequest jsonobj = new JsonObjectRequest(Request.Method.POST, url,new JSONObject(data),
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            if(mResultCallback != null){
-                                mResultCallback.notifySuccess(response);
-                            }
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            if(mResultCallback != null){
-                                mResultCallback.notifyError(error);
-                            }
-                        }
-                    }
-            ){
-                //here I want to post data to sever
-            };
-            requestQueue.add(jsonobj);
-
-        }
-
+        queue.add(stringRequest);
     }
 
     public void onRedoClick(View view) {
