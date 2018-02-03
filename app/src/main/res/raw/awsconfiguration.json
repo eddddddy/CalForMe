@@ -1,0 +1,22 @@
+{
+  "Version": "1.0",
+  "CredentialsProvider": {
+    "CognitoIdentity": {
+      "Default": {
+        "PoolId": "us-east-1:e1dcf7ee-52ef-4035-b82e-257c3a700573",
+        "Region":  "us-east-2"
+      }
+    }
+  },
+  "IdentityManager" : {
+    "Default" : {
+
+    }
+  },
+  "S3TransferUtility": {
+    "Default": {
+      "Bucket": "caloriecounter158",
+      "Region": "us-east-2"
+    }
+  }
+}
