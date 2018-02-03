@@ -17,23 +17,13 @@ import android.support.v4.app.FragmentTransaction;
 import android.graphics.BitmapFactory;
 import android.view.View;
 
-import java.io.ByteArrayOutputStream;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-import java.util.HashMap;
+import java.io.ByteArrayOutputStream
 
 import org.json.*;
 
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.params.BasicHttpParams;
+import com.amazonaws.mobile.config.AWSConfiguration;
+import com.amazonaws.mobileconnectors.s3.transferutility.*;
+import com.amazonaws.mobile.client.AWSMobileClient;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,18 +31,13 @@ public class MainActivity extends AppCompatActivity {
     String mCurrentPhotoPath;
     String url;
     FragmentTransaction transaction;
-    /*
-    DefaultHttpClient httpClient = new DefaultHttpClient(new BasicHttpParams());
-    HttpPost httpPost = new HttpPost("https://nickc158.lib.id/caloriecounter@dev/?bytes=food");
-    httpPost.setHeader("Content-type", "application/json");
-    */
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         transaction = getSupportFragmentManager().beginTransaction();
+        AWSMobileClient.getInstance().initialize(this).execute();
 
         imageView = findViewById(R.id.imageView);
         url = "https://nickc158.lib.id/caloriecounter@dev";
@@ -114,10 +99,6 @@ public class MainActivity extends AppCompatActivity {
         bitmap.compress(Bitmap.CompressFormat.JPEG, 50, stream);
         byte[] byteArray = stream.toByteArray();
         return byteArray;
-    }
-
-    public interface VolleyCallback{
-        void onSuccess(String result);
     }
 
     public void sendToClarifai(final Bitmap bitmap) {
